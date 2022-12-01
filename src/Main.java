@@ -6,6 +6,9 @@ public class Main {
     public static void main(String[] args) {
         int thisElf = 0;
         int maxValue = 0;
+        int max1 =0;
+        int max2 =0;
+        int max3 =0;
         BufferedReader reader;
 
         try {
@@ -26,11 +29,27 @@ public class Main {
                 if (thisElf > maxValue){
                     maxValue = thisElf;
                 }
+                if (thisElf>max1) {
+                    max1 = thisElf;
+                    if (thisElf > max2) {
+                        max1 = max2;
+                        max2 = thisElf;
+                        if (thisElf > max3) {
+                            max2 = max3;
+                            max3 = thisElf;
+                        }
+                    }
+                }
 
                 line = reader.readLine();
             }
 
             System.out.println("Max Value = " + maxValue);
+            System.out.println("Max1 = " + max1);
+            System.out.println("Max2 = " + max2);
+            System.out.println("Max3 = " + max3);
+            System.out.println("Sum: = " + (max1 + max2 + max3));
+
             reader.close();
         } catch (IOException e) {
             e.printStackTrace();
