@@ -1,4 +1,3 @@
-import javax.sound.midi.Soundbank;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,7 +6,8 @@ import java.io.IOException;
 public class Main {
     public static void main(String[] args) {
 //        Day1_Calories.ex1();
-        
+
+        // day2
         Day2_RPS day2_rps = new Day2_RPS();
         day2_rps.createMap();
         day2_rps.createResults();
@@ -29,7 +29,6 @@ public class Main {
                 line = reader.readLine();
             }
             System.out.println("Result = " + score);
-
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
