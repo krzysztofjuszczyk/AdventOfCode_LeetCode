@@ -12,7 +12,7 @@ public class Day1_Calories {
         BufferedReader reader;
 
         try {
-            reader = new BufferedReader(new FileReader("src/day1_calories.txt"));
+            reader = new BufferedReader(new FileReader("src/inputs/day1_calories.txt"));
             String line = reader.readLine();
 
             while (line != null) {
