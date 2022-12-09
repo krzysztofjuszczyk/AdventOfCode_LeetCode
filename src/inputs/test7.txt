@@ -1,0 +1,13 @@
+$ cd /
+$ ls
+dir a
+dir b
+100 file.txt
+$ cd a
+$ ls
+5 filea.z
+$ cd ..
+$ cd b
+$ ls
+10 fileb
+$ cd ..
