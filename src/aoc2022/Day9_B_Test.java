@@ -8,43 +8,41 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Day9_B {
-    ArrayList <Node> snake = new ArrayList<>();
+public class Day9_B_Test {
+    ArrayList<Node> snake = new ArrayList<>();
 
-    static class Node{
+    static class Node {
         int r;
         int c;
 
-        final int name;
+        final char name;
         private static int counter;
 
-        Node (int r, int c){
-            name = counter++;
+        Node(int r, int c) {
+            name = (char) (counter+65);
+            counter++;
             this.r = r;
             this.c = c;
 
         }
-        public String toString (){
-            return r + ","+ c;
+
+        public String toString() {
+            return r + "," + c;
         }
 
-        private void move (char cmd){
+        private void move(char cmd) {
             if (cmd == 'U') {
                 r -= 1;
-            }
-            else if (cmd=='D'){
+            } else if (cmd == 'D') {
                 r += 1;
-            }
-            else if (cmd == 'L'){
+            } else if (cmd == 'L') {
                 c -= 1;
-            }
-            else if (cmd == 'R'){
+            } else if (cmd == 'R') {
                 c += 1;
-            }
-            else return;
+            } else return;
         }
 
-        private void moveCloser (Node node) {
+        private void moveCloser(Node node) {
             // horizontally
             if (node.r == r) {
                 c = (c + node.c) / 2;
@@ -69,10 +67,10 @@ public class Day9_B {
             }
         }
 
-        private boolean isTooFar (Node node){
+        private boolean isTooFar(Node node) {
 
-            if (node.r> r+1 || node.r < r-1
-                    || node.c > c+1 || node.c < c-1) return true;
+            if (node.r > r + 1 || node.r < r - 1
+                    || node.c > c + 1 || node.c < c - 1) return true;
             else return false;
         }
     }
@@ -80,21 +78,22 @@ public class Day9_B {
 
     public static void main(String[] args) {
         List<Node> snake = new LinkedList<>();
-        int startingRow = 400;   // 17 for test9.txt input
-        int startingCol = 400;   // 12 for test9.txt input
-        int rows = 800;          // 30 for test9.txt input
-        int columns = 800;       // 30 for test9.txt input
+        int totalNodes = 10;
+        int startingRow = 20;
+        int startingCol = 12;
+        int rows = 30;
+        int columns = 30;
         int result = 0;
-        Node head = new Node(startingRow,startingCol);
+        Node head = new Node(startingRow, startingCol);
         snake.add(head);
         int[][] resultsArray = new int[rows][columns];
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/aoc2022/inputs/day9.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/aoc2022/inputs/test9.txt"));
             String line = reader.readLine();
 
-            while (line != null){
-                String []  lineA = line.split(" ");
+            while (line != null) {
+                String[] lineA = line.split(" ");
                 char cmd = line.charAt(0);
                 int x = Integer.parseInt(lineA[1]);
 
@@ -102,32 +101,49 @@ public class Day9_B {
                 // MOVING HEAD x times
 
                 for (int i = 0; i < x; i++) {
+                    char[][] currentView = new char[rows][columns];
+
                     head.move(cmd);
-                    if (Node.counter<10){
+//                    currentView[head.r][head.c] = head.name;
+
+                    if (Node.counter < totalNodes) {
                         snake.add(new Node(startingRow, startingCol));
                     }
 
                     // each time the whole snake moves;
-                    for (int j=1; j<snake.size(); j++ ) {
-                        Node front = snake.get(j - 1);
-                        Node back = snake.get(j);
+                    for (int j = 0; j < snake.size()-1; j++) {
+                        Node front = snake.get(j);
+                        Node back = snake.get(j+1);
+                        currentView[front.r][front.c] = front.name;
+//                        currentView[back.r][back.c] = back.name;
 
                         if (front.isTooFar(back)) {
                             back.moveCloser(front);
                         }
                         // if visited by tail
-                        if (back.name == 9) {
+                        if (back.name == 'J') {
                             if (resultsArray[back.r][back.c] == 0) {
                                 resultsArray[back.r][back.c] = 1;
                             }
                         }
+
                     }
+                    // printing current state
+                    for (int k = 0; k < rows; k++) {
+                        System.out.println();
+                        for (int l = 0; l < columns; l++) {
+
+                            System.out.print(currentView[k][l]);
+                        }
+                    }
+                    System.out.println();
+                    System.out.println();
+                    System.out.println();
 
                 }
 
                 line = reader.readLine();
             }
-
 
 
         } catch (FileNotFoundException e) {
@@ -149,8 +165,5 @@ public class Day9_B {
 
 
     }
-
-
-
-
 }
+
