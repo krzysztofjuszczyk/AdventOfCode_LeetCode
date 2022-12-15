@@ -1,3 +1,5 @@
+package aoc2022;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,7 +14,7 @@ public class Day1_Calories {
         BufferedReader reader;
 
         try {
-            reader = new BufferedReader(new FileReader("src/inputs/day1_calories.txt"));
+            reader = new BufferedReader(new FileReader("src/aoc2022/inputs/day1_calories.txt"));
             String line = reader.readLine();
 
             while (line != null) {

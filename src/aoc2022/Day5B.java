@@ -1,3 +1,5 @@
+package aoc2022;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -6,7 +8,7 @@ import java.util.Stack;
 
 public class Day5B {
         public static void main(String[] args) throws FileNotFoundException {
-            BufferedReader reader = new BufferedReader(new FileReader("src/inputs/day5.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/aoc2022/inputs/day5.txt"));
             Stack<Character>[] stacks = new Stack[9];
             Stack<Character>[] stacksTmp;
             stacksTmp = new Stack[9];

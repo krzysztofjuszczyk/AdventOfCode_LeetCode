@@ -1,3 +1,5 @@
+package aoc2022;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -6,7 +8,7 @@ import java.util.Set;
 
 public class Day3 {
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("src/inputs/day3.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("src/aoc2022/inputs/day3.txt"));
         String line = reader.readLine();
         int sum =0;
         int c = 1;

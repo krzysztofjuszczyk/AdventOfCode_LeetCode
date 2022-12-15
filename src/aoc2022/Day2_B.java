@@ -1,3 +1,5 @@
+package aoc2022;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -17,7 +19,7 @@ public class Day2_B {
 
         try {
             int score = 0;
-            reader = new BufferedReader(new FileReader("src/day2_strategy.txt"));
+            reader = new BufferedReader(new FileReader("src/aoc2022/inputs/day2_strategy.txt"));
             String line = reader.readLine();
 
             while (line != null) {

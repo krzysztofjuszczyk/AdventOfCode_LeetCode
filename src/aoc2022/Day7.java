@@ -1,3 +1,5 @@
+package aoc2022;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,7 +10,7 @@ public class Day7 {
     /*
     public static void main(String[] args) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/inputs/day7.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/aoc2022/inputs/day7.txt"));
             String line = reader.readLine();
             Stack<String> path = new Stack<>();
             path.push("/");

@@ -1,3 +1,5 @@
+package aoc2022;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,7 +10,7 @@ public class Day8B {
     public static void main(String[] args) throws FileNotFoundException {
         //visible trees
 
-        BufferedReader reader = new BufferedReader(new FileReader("src/inputs/day8.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("src/aoc2022/inputs/day8.txt"));
         int row = 0;
 
 

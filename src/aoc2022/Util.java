@@ -1,3 +1,5 @@
+package aoc2022;
+
 import java.util.*;
 
 public class Util {
