@@ -1,4 +1,4 @@
-package aoc2021.inputs;
+package aoc2021;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
