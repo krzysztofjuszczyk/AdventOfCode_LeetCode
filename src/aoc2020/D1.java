@@ -15,21 +15,31 @@ public class D1 {
         while (line!= null){
             int no = Integer.parseInt(line);
             set.add(no);
-
-            if (no>350){
-                set.add(no);
-            }
-                else {
-                int remainder = 2020 - no;
-                if (set.contains(remainder)) {
-                    System.out.println(no + " * " + remainder + " = " + (no*remainder));
-                }
-
-
-            }
+//// part A
+//            if (no>350){
+//                set.add(no);
+//            }
+//                else {
+//                int remainder = 2020 - no;
+//                if (set.contains(remainder)) {
+//                    System.out.println(no + " * " + remainder + " = " + (no*remainder));
+//                }
+//
+//
+//            }
             line = reader.readLine();
         }
-
+//part 2
+        for (int x      : set
+             ) {
+            for (int y: set
+                 ) {
+                int remainder = 2020 - x - y;
+                if (set.contains(remainder)){
+                    System.out.println(x + "*" + y+ "*" + remainder + " = " + (x*y*remainder));
+                }
+            }
+        }
 
     }
 }
