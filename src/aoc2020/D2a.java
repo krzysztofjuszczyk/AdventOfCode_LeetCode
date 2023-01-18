@@ -9,6 +9,7 @@ public class D2a {
         BufferedReader reader = new BufferedReader(new FileReader("src/aoc2020/inputs/d2.txt"));
         String line = reader.readLine();
         int result = 0;
+        int resultB = 0;
 
         while (line!= null){
             String [] l = line.split(" ");
@@ -16,6 +17,9 @@ public class D2a {
             String[] l1 = l[0].split("-");
             int from = Integer.parseInt(l1[0]);
             int to = Integer.parseInt(l1[1]);
+            int indexA = from-1;
+            int indexB = to-1;
+
             int howMany = 0;
 
             char c = l[1].charAt(0);
@@ -27,10 +31,14 @@ public class D2a {
             if (howMany>=from && howMany<=to){
                 result++;
             }
+            if ((l[2].charAt(indexA) == c) ^ (l[2].charAt(indexB) == c)){
+                resultB++;
+            }
 
             line = reader.readLine();
         }
         System.out.println("valid passwords: "+ result);
+        System.out.println("valid passwords B: "+ resultB);
 //part 2
    }
 }
