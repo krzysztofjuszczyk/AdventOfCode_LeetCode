@@ -73,11 +73,73 @@ public class D4a {
 }
 
     private static boolean isValid(InnerObj p) {
-        if ((p.fields.containsKey("byr")) && (p.fields.containsKey("iyr")) &&
+        if (containsAllFields(p) &&
+        byrValid(p)    && iyrValid(p)     && eyrValid(p)  &&
+        hgtValid(p)     && hclValid(p)      && eclValid(p) && pidValid(p)) return true;
+
+        else return false;
+    }
+
+    private static boolean containsAllFields(InnerObj p) {
+        return (p.fields.containsKey("byr")) && (p.fields.containsKey("iyr")) &&
                 (p.fields.containsKey("eyr")) && (p.fields.containsKey("hgt")) &&
                 (p.fields.containsKey("hcl")) && (p.fields.containsKey("ecl")) &&
-                (p.fields.containsKey("pid")) ) return true;
-//            byr, iyr, eyr, hgt, hcl, ecl, pid
+                (p.fields.containsKey("pid"));
+    }
+
+    private static boolean byrValid(InnerObj p) {
+        String x = p.fields.get("byr");
+        if ((x.length()==4) && (Integer.parseInt(x)>=1920) && (Integer.parseInt(x)<=2002))
+            return true;
         return false;
     }
+    private static boolean iyrValid(InnerObj p) {
+        String x = p.fields.get("iyr");
+        if ((x.length()==4) && (Integer.parseInt(x)>=2010) && (Integer.parseInt(x)<=2020))
+            return true;
+        return false;
+
+    }
+    private static boolean eyrValid(InnerObj p) {
+        String x = p.fields.get("eyr");
+        if ((x.length()==4) && (Integer.parseInt(x)>=2020) && (Integer.parseInt(x)<=2030))
+            return true;
+        return false;
+
+    }
+
+    private static boolean hgtValid(InnerObj p) {
+        String x = p.fields.get("hgt");
+        String last2 = x.substring(x.length()-2);
+        String height = x.substring(0, x.length()-2);
+
+        if ( last2.equals("cm")
+            && Integer.parseInt(height)>=150 && Integer.parseInt(height)<=193)
+            return true;
+
+        if (last2.equals("in") &&
+        Integer.parseInt(height)>=59 && Integer.parseInt(height)<=76)
+            return true;
+
+        return false;
+
+    }
+    private static boolean hclValid(InnerObj p) {
+        String x = p.fields.get("hcl");
+        if (x.matches("#[0-9a-f]{6}"))return true;
+        return false;
+    }
+    private static boolean eclValid(InnerObj p) {
+        String x = p.fields.get("ecl");
+        if (x.equals("amb") || x.equals("blu") || x.equals("brn") ||
+                x.equals("gry") ||x.equals("grn") ||x.equals("hzl") ||x.equals("oth") ) return true;
+        return false;
+    }
+
+    private static boolean pidValid(InnerObj p) {
+        String x = p.fields.get("pid");
+        if (x.length() == 9) return true;
+        return false;
+    }
+
 }
