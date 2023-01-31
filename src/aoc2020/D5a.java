@@ -12,19 +12,19 @@ public class D5a {
         System.out.println(line);
 
         int result = 0;
-        int l =1;
+        int lineNo =1;
 
         while (line!= null){
-            System.out.print(l++ + " ");
+            System.out.print(lineNo++ + " ");
             int row = 0;
             int col = 0;
 
             char[] lineArr = line.toCharArray();
 
             // 0 - 6 row
-            int begin = 0;
+            int begin = 1;
             int end = 128;
-            int diff = end - begin + 1;
+            int diff = end - begin;
             for (int i= 0; i < 7; i++) {
                 if (lineArr[i] == 'B'){
                     begin = end - diff / 2;
@@ -40,13 +40,13 @@ public class D5a {
 //        System.out.println("ROW: " +row);
 
             // 7-9 col
-             begin = 0;
-             end = 7;
-             diff = end - begin + 1;
+             begin = 1;
+             end = 8;
+             diff = end - begin ;
             for (int i = 7; i < 10 ; i++) {
 
                 if (lineArr[i] == 'R'){
-                    begin =  end - (diff / 2) + 1;
+                    begin =  end - (diff / 2) ;
                     col = end;
                 }
                 else {
