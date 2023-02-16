@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-public class D4aBingo {
+public class D4b {
     public static void main(String[] args) {
         int result = 0;
         Set<Card> set = new HashSet<>();
 
         try {
-            BufferedReader br = new BufferedReader(new FileReader("src/aoc2021/inputs/d4test.txt"));
+            BufferedReader br = new BufferedReader(new FileReader("src/aoc2021/inputs/d4.txt"));
             String line = br.readLine();
             String[] tmp = line.split(",");
             int[] cmds = new int[tmp.length];
@@ -43,12 +43,12 @@ public class D4aBingo {
             // start of checking results
 
             for (int number :
-                    // we check numbers
+                // we check numbers
                     cmds) {
-                    // in each card
+                // in each card
                 for (Card c :
                         set) {
-                    if (c.valuesLeft.contains(number)){
+                    if (!c.isBingo && (c.valuesLeft.contains(number))){
                         c.mark(number);
                         if (c.isBingo){
                             result = c.calculateResult() * number;
@@ -69,55 +69,4 @@ public class D4aBingo {
 
 
     }
-}
-class Card {
-    int[][] values = new int[5][5];
-    int[][] results = new int [5][5];
-    Set<Integer> valuesLeft = new HashSet<>();
-    boolean isBingo;
-
-    public int calculateResult() {
-        int result = 0;
-        for (int x :
-                valuesLeft) {
-            result += x;
-        }
-        return result;
-    }
-
-    public void mark(int number) {
-       valuesLeft.remove(number);
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-            if (values[i][j] == number){
-                results[i][j] = 1;
-                checkRow(i);
-                checkColumn(j);
-            }
-            }
-        }
-
-    }
-
-    private void checkRow(int x) {
-        int sum = 0;
-        for (int i = 0; i < 5; i++) {
-            sum += results[x][i];
-        }
-        if (sum == 5) {
-            isBingo = true;
-        }
-    }
-
-    private void checkColumn(int x) {
-        int sum = 0;
-        for (int i = 0; i < 5; i++) {
-            sum += results[i][x];
-        }
-        if (sum == 5) {
-            isBingo = true;
-        }
-
-    }
-
 }
