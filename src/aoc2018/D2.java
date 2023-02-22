@@ -72,7 +72,7 @@ public class D2 {
                             diff = k;
                         }
 //                        if (difference >1){
-//                            break;
+//                            break;dfrgtgtgt
 //                        }
 
                         if (k==25 && difference ==1){
