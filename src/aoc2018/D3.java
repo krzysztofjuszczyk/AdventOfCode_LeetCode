@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 public class D3 {
     public static void main(String[] args) {
-        int[] [] array = new int[10000][10000];
+        int[] [] array = new int[1100][1100];
         int l=0;
 
         try {
@@ -24,8 +24,8 @@ public class D3 {
                 String [] tmp = coordinates[1].split(":");
                 int row = Integer.parseInt(tmp[0]);
                 tmp[1]= tmp[1].trim();
-                int w = Integer.parseInt(tmp[1].split("x")[0]);
-                int h = Integer.parseInt(tmp[1].split("x")[1]);
+                int h = Integer.parseInt(tmp[1].split("x")[0]);
+                int w = Integer.parseInt(tmp[1].split("x")[1]);
 
                 for (int i = 0; i < w; i++) {
                     for (int j = 0; j < h; j++) {
