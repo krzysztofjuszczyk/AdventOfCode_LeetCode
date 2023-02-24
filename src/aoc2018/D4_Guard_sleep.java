@@ -14,8 +14,11 @@ import java.util.Map;
 public class D4_Guard_sleep {
     public static void main(String[] args) {
         String line;
-        int currentGuardNo = 0;
         Map<Integer, Guard> map = new HashMap<>();
+
+        int currentGuardNo = 0;
+        String previousDay = "";
+        String previousTime = "";
 
         try {
             BufferedReader br = new BufferedReader(new FileReader("src/aoc2018/inputs/d4test.txt"));
@@ -30,35 +33,59 @@ public class D4_Guard_sleep {
 //                cmds[0] = tmp[0].split(" ")[0];
 //                cmds[1] = tmp[0].split(" ")[1];
                 String day = tmp[0].split(" ")[0];
-                String hour = tmp[0].split(" ")[1];
+                String time = tmp[0].split(" ")[1];
 
                 char c = tmp[1].charAt(0);
 
                 switch (c) {
                     case 'G':
-                        String [] x = tmp[1].split(" ");
+                        String[] x = tmp[1].split(" ");
                         currentGuardNo = Integer.parseInt(x[1].substring(1));
-                        if (!map.containsKey(currentGuardNo)){
+                        if (!map.containsKey(currentGuardNo)) {
                             Guard guard = new Guard(currentGuardNo);
                             map.put(currentGuardNo, guard);
                         }
+                        previousDay = day;
+                        previousTime = time;
                         break;
 
-                    case 'f':
+                    case 'f': // falls asleep
+                        Guard guard = map.get(currentGuardNo);
+                        int work = 0;
+                        if (previousDay.equals(day)) {
+                            work = Integer.parseInt(time.substring(time.length() - 2)) - Integer.parseInt(previousTime.substring(previousTime.length() - 2));
+                        } else
+                        {
+
+                        }
+
+                        guard.workingTime += work;
 
                         break;
 
                     case 'w':
+                        Guard guard1 = map.get(currentGuardNo);
+                        int sleep = 0;
+                        if (previousDay.equals(day)) {
+                            sleep = Integer.parseInt(time.substring(time.length() - 2)) - Integer.parseInt(previousTime.substring(previousTime.length() - 2));
+                        } else
+                        {
 
+                        }
+                        guard1.asleepTime += sleep;
                         break;
 
                     default: break;
                 }
 
-
+                previousDay = day;
+                previousTime = time;
 
 
             }
+
+            System.out.println("guard 10 asleep: " + map.get(10).asleepTime +" working: " + map.get(10).workingTime );
+
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -70,13 +97,13 @@ public class D4_Guard_sleep {
 
     static class Guard {
         int no;
-        int asleep;
-        int wake;
+        int asleepTime;
+        int workingTime;
 
         public Guard (int no){
             this.no = no;
-            asleep =0;
-            wake = 0;
+            asleepTime =0;
+            workingTime = 0;
         }
 
     }
