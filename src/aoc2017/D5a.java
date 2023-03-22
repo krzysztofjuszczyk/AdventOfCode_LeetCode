@@ -30,7 +30,15 @@ public class D5a {
         int result = 0;
         while (i <= maxIndex) {
             int curValue = list.get(i);
+//            part A
+//            list.set(i, curValue+1);
+            // part B
+            if (curValue>=3){
+                list.set(i, curValue-1);
+            }
+            else{
             list.set(i, curValue+1);
+            }
             i = i+ curValue;
 
             result++;
