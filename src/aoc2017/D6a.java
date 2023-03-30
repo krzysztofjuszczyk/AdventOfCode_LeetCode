@@ -63,6 +63,36 @@ public class D6a {
 
         }
         System.out.println("no of cycles: " + cycle);
+
+        //part B
+        set.clear();
+        cycle = 0;
+        while (!set.contains(representation)) {
+            set.add(representation);
+            int max = array[0];
+            int index = 0;
+
+            for (int i = 1; i < l; i++) {
+                if (array[i] > max) {
+                    max = array[i];
+                    index = i;
+                }
+            }
+            array[index] = 0;
+            // distribute evenly max times
+            for (int i = 0; i < max; i++) {
+                array[(index + 1 + i) % l] += 1;
+            }
+            cycle++;
+
+            representation = Arrays.toString(array);
+
+
+
+
+        }
+        System.out.println("no of cycles: " + cycle);
+
     }
 
 
