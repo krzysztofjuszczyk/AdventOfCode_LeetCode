@@ -14,7 +14,7 @@ public class D7a    {
         String line = "";
         ArrayList<String> lines = new ArrayList();
         ArrayList<String> candidates = new ArrayList();
-        Map<String, Integer> map = new HashMap<>();
+        Map<String, Tower> map = new HashMap<>();
 
 
             try {
@@ -30,28 +30,73 @@ public class D7a    {
 //        qoyq (66)
 
 //        while (!lines.isEmpty()){
+//        int size = lines.size();
+//        for (int i = 0; i < size ; i++) {
+//            if (lines.get(i).contains("->")){
+//                candidates.add(lines.get(i));
+//                continue;
+//            }
+//            String[] data= lines.get(i).split(" ");
+//            String key = data[0];
+//
+//                int val = Integer.parseInt(data[1].substring(1, data[1].length()-1));
+//                map.put(key,val);
+//                lines.remove(i--);
+//                size--;
+//
+//            }
         int size = lines.size();
         for (int i = 0; i < size ; i++) {
+            String[] data = lines.get(i).split(" ");
+            String name = data[0];
+            int val = Integer.parseInt(data[1].substring(1, data[1].length() - 1));
 
-            String[] data= lines.get(i).split(" ");
-            String key = data[0];
 
-                if (lines.get(i).contains("->")){
-                    if (map.containsKey(key)){
-
-                    }
-                    continue;
+            if (lines.get(i).contains("->")){
+                Set<>
+                for (int j = 3; j < data.length; j++) {
+                    String childName = data[j].replace(",","");
                 }
+                Tower tower = new Tower(val, name);
 
-                int val = Integer.parseInt(data[1].substring(1, data[1].length()-1));
-                map.put(key,val);
-                lines.remove(i--);
-                size--;
+                continue;
+            }
+            else {
+                Tower tower = new Tower(val, name);
+                map.put(name, tower);
 
             }
+        }
             System.out.println("map");
 
 
 //            }
         }
+        }
+
+        class Tower {
+            String name;
+            int weight;
+            int totalAboveWeight;
+            Set<Tower> children;
+            Tower parent;
+            boolean isBalanced;
+
+            public Tower(int weight, String name ) {
+                this.weight = weight;
+                this.name = name;
+            }
+
+            public Tower(int weight, Set<Tower> children) {
+                this.weight = weight;
+                this.children = children;
+            }
+
+            public int calculateTotalWeight(){
+                for (Tower t :
+                        children) {
+                    this.totalAboveWeight += t.weight;
+                }
+                return totalAboveWeight;
+            }
         }
