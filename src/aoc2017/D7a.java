@@ -9,12 +9,15 @@ import java.util.ArrayList;
 import java.util.*;
 
 public class D7a    {
+    static Map<String, Tower> map;
+
+
     public static void main(String[] args) throws FileNotFoundException {
-        BufferedReader reader = new BufferedReader(new FileReader("src/aoc2017/inputs2017/d7test.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("src/aoc2017/inputs2017/d7.txt"));
         String line = "";
         ArrayList<String> lines = new ArrayList();
         ArrayList<String> candidates = new ArrayList();
-        Map<String, Tower> map = new HashMap<>();
+         map = new HashMap<>();
 
 
             try {
@@ -46,57 +49,85 @@ public class D7a    {
 //
 //            }
         int size = lines.size();
-        for (int i = 0; i < size ; i++) {
-            String[] data = lines.get(i).split(" ");
-            String name = data[0];
-            int val = Integer.parseInt(data[1].substring(1, data[1].length() - 1));
+            while (!lines.isEmpty()) {
+                for (int i = 0; i < size; i++) {
+                    String[] data = lines.get(i).split(" ");
+                    String name = data[0];
+                    int val = Integer.parseInt(data[1].substring(1, data[1].length() - 1));
+                    boolean removable = true;
+
+                    //if doesnt' exist create new
+                    if (!map.containsKey(name)) {
+                        Tower tower = new Tower(name, val);
+                        map.put(name, tower);
+                    }
+
+                    if (lines.get(i).contains("->")) {
+
+                        for (int j = 3; j < data.length; j++) {
+                            String childName = data[j].replace(",", "");
+                            if (!map.get(name).children.contains(childName)) {
+                                map.get(name).children.add(childName);
+                            }
+                            // watch out for recursion -child might not be in map yet
+                            if (!map.containsKey(childName)) {
+                                removable = false;
+                                break;
+                            } else {
+                                map.get(childName).parent = name;
+                            }
+                        }
+                    }
 
 
-            if (lines.get(i).contains("->")){
-                Set<>
-                for (int j = 3; j < data.length; j++) {
-                    String childName = data[j].replace(",","");
+                    if (removable) {
+                        lines.remove(i--); // remove a tower from arraylist and decr index to keep on going
+                        size--;
+                    }
                 }
-                Tower tower = new Tower(val, name);
-
-                continue;
             }
-            else {
-                Tower tower = new Tower(val, name);
-                map.put(name, tower);
-
-            }
+            System.out.println("map of towers created");
+        //check which hasn't got any parents
+        String result = "";
+        for (Map.Entry<String, Tower> entry : map.entrySet()) {
+            String k = entry.getKey();
+            Tower v = entry.getValue();
+            System.out.println("Key: " + k + " Parent: " + v.parent);
+            if (v.parent.equals("")) result = k;
         }
-            System.out.println("map");
+
+        System.out.println();
+        System.out.println("RESULT: " + result);
 
 
 //            }
         }
+
+    static class Tower {
+        String name;
+        int weight;
+        int totalAboveWeight;
+        Set<String> children;
+        String parent;
+        boolean isBalanced;
+
+        public Tower(String name, int weight ) {
+            this.weight = weight;
+            this.name = name;
+            this.children = new HashSet<>();
+            this.parent = "";
         }
 
-        class Tower {
-            String name;
-            int weight;
-            int totalAboveWeight;
-            Set<Tower> children;
-            Tower parent;
-            boolean isBalanced;
-
-            public Tower(int weight, String name ) {
-                this.weight = weight;
-                this.name = name;
+        public int calculateTotalWeight(){
+            for (String child :
+                    children) {
+                int tmpWeight = map.get(child).weight;
+                this.totalAboveWeight += tmpWeight;
             }
-
-            public Tower(int weight, Set<Tower> children) {
-                this.weight = weight;
-                this.children = children;
-            }
-
-            public int calculateTotalWeight(){
-                for (Tower t :
-                        children) {
-                    this.totalAboveWeight += t.weight;
-                }
-                return totalAboveWeight;
-            }
+            return totalAboveWeight;
         }
+        }
+
+}
+
+
