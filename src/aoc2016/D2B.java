@@ -5,14 +5,6 @@ import java.io.IOException;
 
 public class D2B {
 
-//    np.array([
-//            [" ", " ", "1", " ", " "],
-//            [" ", "2", "3", "4", " "],
-//            ["5", "6", "7", "8", "9"],
-//            [" ", "A", "B", "C", " "],
-//            [" ", " ", "D", " ", " "],
-//            ])
-
         public static void main(String[] args) throws IOException {
             String[] instr = new String[5];         // length
             String[][] keys = new String[][]{
