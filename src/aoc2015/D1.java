@@ -14,7 +14,12 @@ public class D1 {
 
             if(line.charAt(i) == '('){
                 ans++;
-            } else ans--;
+            } else {
+                ans--;
+                if (ans==-1){
+                    System.out.println("basement: "+ (i+1));
+                }
+            }
         }
         System.out.println(ans);
     }
