@@ -19,9 +19,9 @@ public class D4a {
             tmp = tmp.substring(0,tmp.length()-1);
             String [] tmp2 = tmp.split("\\[");
 
-            int code = Integer.parseInt(tmp2[0]);
+            int roomCode = Integer.parseInt(tmp2[0]);
             String verification = tmp2[1];
-//            System.out.println(code + " " + verification);
+//            System.out.println(roomCode + " " + verification);
             StringBuilder combined = new StringBuilder();
             for (int i = 0; i < split.length - 1; i++) {
                 String a = split[i];
@@ -29,6 +29,7 @@ public class D4a {
             }
 
             String combinedString = combined.toString();
+            StringBuilder checksum = new StringBuilder();
 
             for (int j = 0; j < combinedString.length(); j++) {
                     char c = combinedString.charAt(j);
@@ -40,38 +41,42 @@ public class D4a {
                     }
                 }
 
-            ArrayList<Integer> list = new ArrayList<>();
+            ArrayList<Integer> listOfOccurencies = new ArrayList<>();
             LinkedHashMap<Character, Integer> sortedMap = new LinkedHashMap<>();
 
             for (Map.Entry<Character, Integer> entry : map.entrySet()) {
-                list.add(entry.getValue());
+                listOfOccurencies.add(entry.getValue());
             }
-            Collections.sort(list);
-            for (int num : list) {
+            Collections.sort(listOfOccurencies);
+            Collections.reverse(listOfOccurencies);
+
+            for (int num : listOfOccurencies) {
+                StringBuilder checksumForAGivenNoOfOccurences = new StringBuilder();
                 for (Map.Entry<Character, Integer> entry : map.entrySet()) {
                     if (entry.getValue().equals(num)) {
-                        sortedMap.put(entry.getKey(), num);
+                        if(sortedMap.containsKey(entry.getKey())){
+                           continue;
+                        } else {
+                            sortedMap.put(entry.getKey(), num);
+                            checksumForAGivenNoOfOccurences.append(entry.getKey());
+                        }
                     }
                 }
+                char[] chars = checksumForAGivenNoOfOccurences.toString().toCharArray();
+                Arrays.sort(chars);
+                checksum.append(chars);
+                checksumForAGivenNoOfOccurences.setLength(0);
             }
             System.out.println(sortedMap);
-//sorted linked map in ascending order - now to reverse it
+            System.out.println(checksum);
+            String firstFive = checksum.substring(0, Math.min(checksum.length(), 5));
+//sorted linked map in descending order
 
-            List<Character> allKeys = new ArrayList<>(sortedMap.keySet());
-            // reverse order of keys
-            Collections.reverse(allKeys);
-            //build a checksum
-            StringBuilder checksum = new StringBuilder();
-            for(Character strKey : allKeys){
-                checksum.append(strKey);
+
+            if (firstFive.equals(verification)){
+                ans+= roomCode;
             }
-            checksum.toString();
-
-
-
-
-
         }
-
+        System.out.println(ans);
     }
 }
