@@ -3,6 +3,7 @@ package leetCode.easy;
 import java.util.HashSet;
 
 public class L409_LongestPalindrome {
+    // length of the longest palindrome that CAN BE BUILT with those letters.
     public int longestPalindrome(String s) {
         if(s==null || s.length()==0) return 0;
         HashSet<Character> hs = new HashSet<Character>();
