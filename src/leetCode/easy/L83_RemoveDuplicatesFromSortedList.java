@@ -1,5 +1,7 @@
 package leetCode.easy;
 
+import leetCode.ListNode;
+
 public class L83_RemoveDuplicatesFromSortedList {
     public ListNode deleteDuplicates(ListNode head) {
         if (head == null || head.next == null) return head;
