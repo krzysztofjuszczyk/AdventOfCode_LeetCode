@@ -27,4 +27,28 @@ public class L242_ValidAnagram {
         }
         return true;
     }
+
+    public boolean isAnagram2(String s, String t) {
+        // deal with the base case in which the two strings are not equally long
+        if (s.length() != t.length()) return false;
+
+        int n = s.length();
+        int[] freq = new int[26];
+
+        for (int i = 0; i < n; i++) {
+            freq[s.charAt(i) - 'a']++;
+        }
+
+        // read the second string, whenever we meet a character that also in the
+        // first string, we substract its count by 1. If we met a character that
+        // is not in the first string, or the count of this character in the second
+        // string already exceeds its count in the first one, simply return false
+        for (int i = 0; i < n; i++) {
+            if (freq[t.charAt(i) - 'a']-- == 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 }
