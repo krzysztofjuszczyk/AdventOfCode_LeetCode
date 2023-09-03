@@ -6,7 +6,7 @@ public class TreeMain {
     public static void main(String[] args) {
         List<Integer> list = List.of(100,80,50,90,30,60,90,85,95,120,110,108,115,140,150);
         TreeNode root = null;
-        for (int val :
+        for (Integer val :
                 list) {
             root = insertNode(root,val);
         }
@@ -14,17 +14,17 @@ public class TreeMain {
     }
 
 
-    public static TreeNode insertNode (TreeNode root, int val)
+    public static TreeNode insertNode (TreeNode head, int val)
     {
-        if (root == null){
-            TreeNode newNode = new TreeNode(val);
-            return newNode;
+        if (head == null){
+            head = new TreeNode(val);
+            return head;
         }
-        if (val > root.val){
-            insertNode(root.right, val);
+        if (val > head.val){
+            head.right = insertNode(head.right, val);
         }
-        else insertNode(root.left, val);
-        return root;
+        else head.left = insertNode(head.left, val);
+        return head;
     }
 
     public static void printLeaves(TreeNode root){
