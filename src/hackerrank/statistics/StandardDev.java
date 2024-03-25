@@ -2,13 +2,13 @@ package hackerrank.statistics;
 
 import java.util.List;
 
-public class WeightedMean {
+public class StandardDev {
     public static void stdDev(List<Integer> arr) {
         // Print your answers to 1 decimal place within this function
-        double standardDev = 0;
-        double mean = 0.0;
+        float standardDev = 0;
+        float mean = 0.0f;
         int sum = 0;
-        double sumSquares = 0;
+        int sumSquares = 0;
 
         for (int i = 0; i < arr.size(); i++) {
             sum += arr.get(i);
@@ -17,11 +17,11 @@ public class WeightedMean {
         mean = sum / arr.size();
 
         for (int i = 0; i < arr.size(); i++) {
-            sumSquares += (arr.get(i) - mean)*(arr.get(i) - mean);
+            sumSquares += Math.pow((arr.get(i) - mean),2);
         }
 
-        standardDev = Math.sqrt(sumSquares / arr.size());
-        System.out.printf("%.1f",standardDev);
+        standardDev = sumSquares / arr.size();
+        System.out.println(standardDev);
 
     }
 }
