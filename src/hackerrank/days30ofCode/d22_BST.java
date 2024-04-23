@@ -10,14 +10,5 @@ public class d22_BST {
         else return 1+ Math.max(getHeight(root.left), getHeight(root.right));
 
     }
-
-    class Node{
-        Node left,right;
-        int data;
-        Node(int data){
-            this.data=data;
-            left=right=null;
-        }
-    }
 }
 
