@@ -29,7 +29,7 @@ public class d15_LinkedList {
             }
         }
 
-     class Node {
+     private class Node {
         int data;
         Node next;
         Node(int d) {

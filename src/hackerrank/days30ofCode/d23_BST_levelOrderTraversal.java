@@ -3,6 +3,20 @@ package hackerrank.days30ofCode;
 import java.util.LinkedList;
 
 public class d23_BST_levelOrderTraversal {
+
+    public static void main(String[] args) {
+        Node n = new Node(4);
+        insert(n,2);
+        insert(n,6);
+        insert(n,1);
+        insert(n,3);
+        insert(n,5);
+        insert(n,7);
+
+        levelOrder(n);
+        // 4 2 6 1 3 5 7
+    }
+
     static void levelOrder(Node root){
         LinkedList<Node> treeQ = new LinkedList();
         treeQ.add(root);
@@ -22,6 +36,11 @@ public class d23_BST_levelOrderTraversal {
         }
 
     }
+
+    static void inOrder(Node root){
+        
+    }
+
     public static Node insert(Node root,int data){
         if(root==null){
             return new Node(data);
