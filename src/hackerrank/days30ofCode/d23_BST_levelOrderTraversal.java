@@ -4,22 +4,23 @@ import java.util.LinkedList;
 
 public class d23_BST_levelOrderTraversal {
     static void levelOrder(Node root){
-        //Write your code here
-        LinkedList<Node> treeQueue = new LinkedList();
-        treeQueue.add(root);
-        while (!treeQueue.isEmpty()){
-            Node toprint = treeQueue.remove();
-            System.out.print(toprint.data);
-            if(toprint.left != null) {
-                treeQueue.add(toprint.left);
+        LinkedList<Node> treeQ = new LinkedList();
+        treeQ.add(root);
+
+        while (!treeQ.isEmpty()){
+            Node top = treeQ.remove();
+            System.out.print(top.data + " ");
+
+            if (top.left != null){
+                treeQ.add(top.left);
+                // System.out.println(top.left + " ");
             }
-            if(toprint.right != null) {
-                treeQueue.add(toprint.right);
-            }
-            if(treeQueue.peek() != null) {
-                System.out.print(" ");
+            if (top.right != null){
+                treeQ.add(top.right);
+                // System.out.println(top.right + " ");
             }
         }
+
     }
     public static Node insert(Node root,int data){
         if(root==null){
