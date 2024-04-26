@@ -2,7 +2,7 @@ package hackerrank.introduction;
 
 import java.util.Scanner;
 
-public class Java1DArray {
+public class Array1D {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);

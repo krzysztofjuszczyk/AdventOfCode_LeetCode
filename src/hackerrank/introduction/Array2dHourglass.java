@@ -2,7 +2,7 @@ package hackerrank.introduction;
 
 import java.util.List;
 
-public class Java2dHourglass {
+public class Array2dHourglass {
     public static void main(String[] args) {
     }
 
