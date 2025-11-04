@@ -33,4 +33,37 @@ public class Rec_Other {
 
         return num + sumOfNaturalNums(num-1);
     }
+
+    int factorial(int n){
+        if (n==0 || n==1){return 1;}
+        return n * factorial(n - 1);
+    }
+
+    int sumToN(int n) {
+        if (n == 1) {
+            return 1;
+        } else {
+            return n + sumToN(n - 1);
+        }
+    }
+
+    int stringLength(String s) {
+        if (s.equals("")) {
+            return 0;
+        }
+        return 1 + stringLength(s.substring(1));
+    }
+
+    int stringLength2(String s) {
+        return (s.isEmpty()) ? 0 : 1 + stringLength(s.substring(1));
+    }
+
+    String reverseString(String s) {
+        if (s.isEmpty()) {
+            return "";
+        }
+        return reverseString(s.substring(1)) + s.charAt(0);
+    }
+
+
 }
