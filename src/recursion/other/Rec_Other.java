@@ -8,6 +8,8 @@ public class Rec_Other {
         System.out.println(retBinaryR(63,""));
         System.out.println(sumOfNaturalNums(5));
 
+        System.out.println(toBinary(5));
+
     }
 
     static boolean isPalindromeR (String s){
@@ -81,10 +83,14 @@ public class Rec_Other {
         return curr + countOccurrences(arr, i+1, val);
     }
 
-    String toBinary(int n){return"";}
-    //implement
+    // convert a string to binary
+    static String toBinary(int n){
+        if (n == 1) return "1";
+        if (n == 0) return "0";
+        String first = n%2 == 0 ? "0" : "1";
+        return toBinary(n/2) + first;}
 
-    //Fibonacci
+    // Fibonacci
     int fib(int n){
         if (n ==0) return 0;
         if (n==1 || n==2) return 1;
