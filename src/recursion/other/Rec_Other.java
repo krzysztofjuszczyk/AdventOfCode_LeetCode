@@ -13,7 +13,7 @@ public class Rec_Other {
     }
 
     static boolean isPalindromeR (String s){
-        if (s.length() == 0 || s.length()==1) return true;
+        if (s.isEmpty() || s.length()==1) return true;
         else if (s.charAt(0) == s.charAt(s.length()-1)) return
                 isPalindromeR(s.substring(1,s.length()-1));
         return false;
@@ -50,7 +50,7 @@ public class Rec_Other {
     }
 
     int stringLength(String s) {
-        if (s.equals("")) {
+        if (s.isEmpty()) {
             return 0;
         }
         return 1 + stringLength(s.substring(1));
@@ -98,11 +98,13 @@ public class Rec_Other {
     }
 
     boolean isPalindrome(String s, int left, int right){
+
         return false;
     }
 
     int countDigits(int n){
-        return -1;
+        if (n<10) return 1;
+        return 1+countDigits(n/10);
     }
 
     int power(int a, int b){

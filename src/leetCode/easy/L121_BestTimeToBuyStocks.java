@@ -11,10 +11,20 @@ public class L121_BestTimeToBuyStocks {
             }
             // profit if sold today
             int currProfit = prices[i]-minPurchasePrice;
-                maxProfit = currProfit>maxProfit ? currProfit : maxProfit;
+                maxProfit = Math.max(currProfit, maxProfit);
             }
             return maxProfit;
         }
+
+    public int maxProfitShort(int[] prices) {
+        int min_price = prices[0];
+        int max_profit = 0;
+        for (int i = 0; i < prices.length; i++) {
+            min_price = Math.min(min_price, prices[i]);
+            max_profit = Math.max(max_profit, prices[i] - min_price);
+        }
+        return max_profit;
+    }
 
     public static void main(String[] args) {
         L121_BestTimeToBuyStocks l121_bestTimeToBuyStocks = new L121_BestTimeToBuyStocks();
